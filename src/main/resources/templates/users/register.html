@@ -10,10 +10,10 @@
             <div class="col-md-8">
                 <form th:action="@{/register}" th:method="post" th:object="${user}">
                     <div class="form-group">
-                        <input class="form-control" th:field="*{username}" placeholder="username"/>
+                        <input type="text" class="form-control" th:field="*{username}" placeholder="username"/>
                     </div>
-                    <input class="form-control" th:field="*{email}" placeholder="email" />
-                    <input class="form-control" th:field="*{password}" placeholder="password" />
+                    <input type="email" class="form-control" th:field="*{email}" placeholder="email" />
+                    <input type="password" class="form-control" th:field="*{password}" placeholder="password" />
                     <textarea class="form-control" th:field="*{bio}" placeholder="Enter a short bio" rows="5"></textarea>
                     <input type="hidden" th:field="*{dateCreated}" />
                     <div class="row">
