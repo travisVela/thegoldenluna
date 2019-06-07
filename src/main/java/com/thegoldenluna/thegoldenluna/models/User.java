@@ -26,8 +26,7 @@ public class User {
     @Column(nullable = false)
     private String bio;
 
-    @Column(name = "image_url")
-    @ColumnDefault("'https://cdn.filestackcontent.com/PaxNxVe2Tkie1TnX8Wcw'")
+    @Column(name = "image_url", nullable = false)
     private String imageURL;
 
     @CreationTimestamp
@@ -105,7 +104,8 @@ public class User {
     }
 
     public String getImageURL() {
-        return imageURL;
+
+        return (this.imageURL == null) ? "https://cdn.filestackcontent.com/PaxNxVe2Tkie1TnX8Wcw " : imageURL;
     }
 
     public void setImageURL(String imageURL) {

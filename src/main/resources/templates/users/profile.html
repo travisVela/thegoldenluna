@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="fragments/head :: head(Profile)" />
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <img th:src="@{${user.imageURL}}" class="rounded-circle profile-img" />
+                <h3 th:text="${user.username}"></h3>
+                <p th:text="${user.bio}"></p>
+                <p th:text="'member since: ' + ${#dates.format(user.dateCreated, 'MM-dd-yyyy')}"></p>
+
+            </div>
+        </div>
+    </div>
+
+
+    <th:block th:replace="fragments/js :: js" />
+</body>
+</html>
