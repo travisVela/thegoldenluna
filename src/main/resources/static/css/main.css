@@ -10,3 +10,7 @@ body {
 .profile-post-img {
     width: 100%;
 }
+.singlePost-featured-img {
+    min-width: 100%;
+    height: 300px;
+}
