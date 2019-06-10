@@ -48,9 +48,17 @@ public class PostController {
     }
 
     @GetMapping("/delete/{id}")
-    public String deletePost(@PathVariable long id) {
+    public String deletePost(@PathVariable long id, Model model) {
+        model.addAttribute("post", postRepo.findOne(id));
         postRepo.delete(id);
         return "redirect:/profile";
     }
+//    @GetMapping("/delete")
+//    public String deletePost(long id) {
+//        Post postToDelete = postRepo.findOne(id);
+//        System.out.println("hello " + postToDelete.getId());
+//        postRepo.delete(postToDelete.getId());
+//        return "redirect:/profile";
+//    }
 
 }
