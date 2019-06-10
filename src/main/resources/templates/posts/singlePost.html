@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="fragments/head :: head(Post)" />
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="jumbotron singlePost-featured-img" th:style="'background-image:url(' + ${post.featuredImgURL} + ');'">
+        </div>
+
+        <div class="row">
+            <h1 class="mx-auto" th:text="${post.title}"></h1>
+        </div>
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-8 text-center" th:text="${post.body}"></div>
+        </div>
+    </div>
+
+    <th:block th:replace="fragments/js :: js" />
+
+</body>
+</html>

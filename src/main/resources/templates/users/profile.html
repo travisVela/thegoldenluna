@@ -32,11 +32,17 @@
 
         <div class="row">
             <div class="col-md-4" th:each="post : ${posts}">
-                <img th:src="@{${post.featuredImgURL}}" class="profile-post-img"/>
-                <h3 th:text="${post.title}"></h3>
-                <p th:text="${post.body}"></p>
-                <a th:href="@{findOne/(id=${post.id})}" class="btn btn-primary postEdit">Edit</a>
-                <a th:href="@{'/delete/' + ${post.id}}" class="btn btn-primary postDelete">Delete</a>
+                <a th:href="@{'/post/' + ${post.id}}">
+                    <div class="card">
+                        <div class="card-body">
+                            <img th:src="@{${post.featuredImgURL}}" class="profile-post-img"/>
+                            <h3 th:text="${post.title}"></h3>
+                            <p th:text="${post.body}"></p>
+                            <a th:href="@{findOne/(id=${post.id})}" class="btn btn-primary postEdit">Edit</a>
+                            <a th:href="@{'/delete/' + ${post.id}}" class="btn btn-primary postDelete">Delete</a>
+                        </div>
+                    </div>
+                </a>
             </div>
         </div>
 
