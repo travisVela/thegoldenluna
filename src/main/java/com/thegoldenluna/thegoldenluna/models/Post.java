@@ -27,8 +27,7 @@ public class Post {
     @DateTimeFormat(pattern="dd.MM.yyyy HH:mm:ss")
     private Date dateCreated;
 
-    @Column(name = "featuredImg_url")
-    @ColumnDefault("'https://cdn.filestackcontent.com/rRr07m4MQlmTHBaEVnGA'")
+    @Column(name = "featuredImg_url", nullable = false)
     private String featuredImgURL;
 
     @ManyToOne(cascade = CascadeType.ALL)
@@ -80,7 +79,8 @@ public class Post {
     }
 
     public String getFeaturedImgURL() {
-        return featuredImgURL;
+
+        return (this.featuredImgURL == null) ? "https://cdn.filestackcontent.com/PaxNxVe2Tkie1TnX8Wcw" : featuredImgURL;
     }
 
     public void setFeaturedImgURL(String featuredImgURL) {
