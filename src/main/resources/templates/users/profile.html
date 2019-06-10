@@ -14,6 +14,132 @@
 
             </div>
         </div>
+
+        <!--=========================================-->
+        <!--   button to display create post modal   -->
+        <!--=========================================-->
+
+        <div class="row">
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createPostModal">
+                Create Post
+            </button>
+        </div>
+
+        <!--===================-->
+        <!--   display posts   -->
+        <!--===================-->
+
+        <div class="row">
+            <div class="col-md-4" th:each="post : ${posts}">
+                <img th:src="@{${post.featuredImgURL}}" class="profile-post-img"/>
+                <h3 th:text="${post.title}"></h3>
+                <p th:text="${post.body}"></p>
+                <a th:href="@{findOne/(id=${post.id})}" class="btn btn-primary postEdit">Edit</a>
+                <a th:href="@{findOne/(id=${post.id})}" class="btn btn-primary postDelete">Delete</a>
+            </div>
+        </div>
+
+        <!--===============================-->
+        <!--   Modal for creating a post   -->
+        <!--===============================-->
+
+        <div class="row">
+            <form th:action="@{/create}" th:method="post">
+                <div class="modal fade" id="createPostModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLongTitle">Create Post</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label for="title" class="col-form-label">title</label>
+                                    <input type="text" class="form-control" id="title" name="title" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="body" class="col-form-label">body</label>
+                                    <textarea class="form-control" id="body" name="body"></textarea>
+                                </div>
+                                <input type="hidden" id="featuredImgURL" name="featuredImgURL" value="https://cdn.filestackcontent.com/rRr07m4MQlmTHBaEVnGA"/>
+
+                                <!--<div class="row">-->
+                                    <!--<form id="pick-form">-->
+                                        <!--<div class="field col-md-6 my-2">-->
+                                            <!--<div class="control">-->
+                                                <!--<button class="button btn btn-primary my-2" type="button" id="picker">Add Pic-->
+                                                <!--</button>-->
+                                                <!--<input type="hidden" id="fileupload" name="fileupload"/>-->
+                                                <!--<input id="file-url" name="file-url" type="hidden"/>-->
+                                                <!--<input th:field="*{imageURL}" id="imageURL" name="imageURL" type="hidden"/>-->
+                                                <!--<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>-->
+                                            <!--</div>-->
+                                            <!--<div class="control" id="nameBox"></div>-->
+                                            <!--<div class="control" id="urlBox"></div>-->
+                                        <!--</div>-->
+                                        <!--<div class="field my-2 col-md-6">-->
+                                            <!--<div class="control">-->
+                                                <!--<input class="button btn btn-primary my-2" type="submit" value="Submit"/>-->
+                                            <!--</div>-->
+                                        <!--</div>-->
+                                    <!--</form>-->
+                                <!--</div>-->
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <input type="submit" class="btn btn-primary" value="Submit" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <!--==============================-->
+        <!--   Modal for editing a post   -->
+        <!--==============================-->
+
+        <div class="row">
+            <form th:action="@{/save}" th:method="post" >
+                <div class="modal fade" id="editPostModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modalEditTitle">Edit Post</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label for="editTitle" class="col-form-label">title</label>
+                                    <input type="text" class="form-control" id="editTitle" name="title" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="editBody" class="col-form-label">body</label>
+                                    <textarea class="form-control" id="editBody" name="body"></textarea>
+                                </div>
+                                <input type="hidden" class="form-control" id="editId" name="id" />
+                                <input type="hidden" name="featuredImgURL" id="editFeaturedImg"/>
+
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <input type="submit" class="btn btn-primary" value="Submit" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+
+
     </div>
 
 

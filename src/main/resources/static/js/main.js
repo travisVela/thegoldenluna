@@ -1,5 +1,6 @@
 "use strict";
 
+
 console.log("hello from main.js!")
 
 const client = filestack.init(filestackToken);
@@ -46,3 +47,4 @@ function updateForm (result) {
     urlBox.appendChild(document.createTextNode('Upload to: '));
     urlBox.appendChild(url);
 }
+

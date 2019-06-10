@@ -1,5 +1,6 @@
 package com.thegoldenluna.thegoldenluna.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -21,15 +22,16 @@ public class Post {
     @Column(nullable = false, length = 1000)
     private String body;
 
-    @CreationTimestamp
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(nullable = false)
-    @DateTimeFormat(pattern="dd.MM.yyyy HH:mm:ss")
-    private Date dateCreated;
+//    @CreationTimestamp
+//    @Temporal(TemporalType.TIMESTAMP)
+//    @Column(nullable = false)
+//    @DateTimeFormat(pattern="dd-MM-yyyy HH:mm:ss")
+//    private Date dateCreated;
 
     @Column(name = "featuredImg_url", nullable = false)
     private String featuredImgURL;
 
+    @JsonIgnore
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
     private User user;
@@ -37,10 +39,12 @@ public class Post {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "post")
     List<Comment> comments;
 
-    public Post(String title, String body, Date dateCreated, String featuredImgURL, User user, List<Comment> comments) {
+    public Post(){}
+
+    public Post(String title, String body, String featuredImgURL, User user, List<Comment> comments) {
         this.title = title;
         this.body = body;
-        this.dateCreated = dateCreated;
+//        this.dateCreated = dateCreated;
         this.featuredImgURL = featuredImgURL;
         this.user = user;
         this.comments = comments;
@@ -70,13 +74,13 @@ public class Post {
         this.body = body;
     }
 
-    public Date getDateCreated() {
-        return dateCreated;
-    }
+//    public Date getDateCreated() {
+//        return dateCreated;
+//    }
 
-    public void setDateCreated(Date dateCreated) {
-        this.dateCreated = dateCreated;
-    }
+//    public void setDateCreated(Date dateCreated) {
+//        this.dateCreated = dateCreated;
+//    }
 
     public String getFeaturedImgURL() {
 
@@ -101,5 +105,16 @@ public class Post {
 
     public void setComments(List<Comment> comments) {
         this.comments = comments;
+    }
+
+    @Override
+    public String toString() {
+        return "Post{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", body='" + body + '\'' +
+                ", featuredImgURL='" + featuredImgURL + '\'' +
+                ", user=" + user +
+                '}';
     }
 }
