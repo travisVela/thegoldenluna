@@ -10,9 +10,16 @@ $(document).ready(function(){
             $('#editTitle').val(post.title);
             $('#editBody').val(post.body);
             $('#editFeaturedImg').val(post.featuredImgURL);
-            $('#editDateCreated').val(post.dateCreated);
         });
         $('#editPostModal').modal();
     });
+
+    $('.postDelete').on('click', function(e) {
+        e.preventDefault();
+        let href = $(this).attr('href');
+        $('#delRef').attr('href', href);
+        $('#deletePostModal').modal();
+
+    })
 
 });

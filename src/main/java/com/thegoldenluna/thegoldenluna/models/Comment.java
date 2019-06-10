@@ -28,8 +28,8 @@ public class Comment {
     private User user;
 
     @JsonIgnore
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "post_id")
+    @ManyToOne
+    @JoinColumn(name = "post_id", referencedColumnName = "id")
     private Post post;
 
     public Comment(){}

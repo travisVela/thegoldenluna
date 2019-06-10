@@ -36,7 +36,7 @@
                 <h3 th:text="${post.title}"></h3>
                 <p th:text="${post.body}"></p>
                 <a th:href="@{findOne/(id=${post.id})}" class="btn btn-primary postEdit">Edit</a>
-                <a th:href="@{findOne/(id=${post.id})}" class="btn btn-primary postDelete">Delete</a>
+                <a th:href="@{'/delete/' + ${post.id}}" class="btn btn-primary postDelete">Delete</a>
             </div>
         </div>
 
@@ -138,6 +138,32 @@
             </form>
         </div>
 
+        <!--===============================-->
+        <!--   Modal for deleting a post   -->
+        <!--===============================-->
+
+        <div class="row">
+            <div class="modal fade" id="deletePostModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modalDeleteTitle">Delete Post</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p class="alert alert-danger">are you sure?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <a href="" class="btn btn-primary" id="delRef">Delete</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
 
 
     </div>
