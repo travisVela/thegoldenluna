@@ -11,6 +11,7 @@ import java.util.List;
 @Entity
 @Table(name = "users")
 public class User {
+
     @Id @GeneratedValue
     private long id;
 
@@ -26,7 +27,7 @@ public class User {
     @Column(nullable = false)
     private String bio;
 
-    @Column(name = "image_url", nullable = false)
+    @Column(name = "image_url", nullable = false, columnDefinition = "varchar(255) default 'https://cdn.filestackcontent.com/PaxNxVe2Tkie1TnX8Wcw'")
     private String imageURL;
 
     @CreationTimestamp
@@ -105,7 +106,7 @@ public class User {
 
     public String getImageURL() {
 
-        return (this.imageURL == null) ? "https://cdn.filestackcontent.com/PaxNxVe2Tkie1TnX8Wcw " : imageURL;
+        return this.imageURL;
     }
 
     public void setImageURL(String imageURL) {
