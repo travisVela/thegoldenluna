@@ -16,7 +16,7 @@ public class IndexController {
         this.postRepo = postRepo;
     }
 
-    @GetMapping("/")
+    @GetMapping("/home")
     public String index(Model model) {
 
         model.addAttribute("posts", postRepo.findAll());
