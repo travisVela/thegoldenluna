@@ -1,5 +1,20 @@
 "use strict";
 $(document).ready(function(){
+    //================
+    //              //
+    //   popovers   //
+    //              //
+    //================
+
+    $('.popover-target').hover(
+        function(e) {
+            $('.hover-popover').show();
+        },
+        function(e) {
+            $('.hover-popover').hide();
+        });
+
+
 
     $('.postEdit').on('click', function(e) {
         e.preventDefault();

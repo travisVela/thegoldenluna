@@ -20,13 +20,24 @@
                             <img th:src="@{${post.featuredImgURL}}" class="profile-post-img"/>
                             <h3 th:text="${post.title}"></h3>
                             <p th:text="${post.body}"></p>
-                            <p th:text="'posted by: ' + ${post.getUser().username}"></p>
+                            <p th:text="'posted by: ' + ${post.getUser().username}" class="popover-target"></p>
+                            <a th:href="@{'mailto:' + ${post.getUser().email}}">
+                                <p th:text="${post.getUser().email}"></p>
+                            </a>
+                        </div>
+                        <div class="card hover-popover">
+                            <div class="card-body">
+                                <img th:src="@{${post.user.imageURL}}" class="profile-img" />
+                                <p th:text="${post.user.bio}"></p>
+                            </div>
                         </div>
                     </div>
                 </a>
             </div>
         </div>
     </div>
+
+    <th:block th:replace="fragments/js :: js" />
 
 </body>
 </html>
