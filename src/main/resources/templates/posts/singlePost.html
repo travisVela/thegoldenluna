@@ -4,6 +4,7 @@
     <th:block th:replace="fragments/head :: head(Post)" />
 </head>
 <body>
+    <th:block th:replace="fragments/nav :: nav" />
     <div class="container-fluid">
         <div class="jumbotron singlePost-featured-img" th:style="'background-image:url(' + ${post.featuredImgURL} + ');'">
         </div>

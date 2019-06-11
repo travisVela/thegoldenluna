@@ -6,11 +6,27 @@
 
 </head>
 <body>
-<div class="container">
-    <div class="row my-4 d-flex justify-content-center">
-        <h1>Hello World!</h1>
+    <th:block th:replace="fragments/nav :: nav" />
+    <div class="container-fluid">
+        <div id="index-jumbotron-bg" class="jumbotron">
+        </div>
     </div>
-</div>
+    <div class="container">
+        <div class="row">
+            <div th:each="post : ${posts}" class="col-md-4">
+                <a th:href="@{'/post/' + ${post.id}}">
+                    <div class="card">
+                        <div class="card-body">
+                            <img th:src="@{${post.featuredImgURL}}" class="profile-post-img"/>
+                            <h3 th:text="${post.title}"></h3>
+                            <p th:text="${post.body}"></p>
+                            <p th:text="'posted by: ' + ${post.getUser().username}"></p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
 
 </body>
 </html>
