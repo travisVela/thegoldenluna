@@ -2,9 +2,11 @@ package com.thegoldenluna.thegoldenluna.controllers;
 
 import com.thegoldenluna.thegoldenluna.models.Comment;
 import com.thegoldenluna.thegoldenluna.models.Post;
+import com.thegoldenluna.thegoldenluna.models.User;
 import com.thegoldenluna.thegoldenluna.repositories.CommentRepo;
 import com.thegoldenluna.thegoldenluna.repositories.PostRepo;
 import com.thegoldenluna.thegoldenluna.repositories.UserRepo;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,6 +29,8 @@ public class SinglePostController {
 
     @GetMapping("/post/{id}")
     public String post(@PathVariable long id, Model model) {
+        User sessionUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User DbUser = userRepo.findOne(sessionUser.getId());
         Post post = postRepo.findOne(id);
 
         List<Comment> postComments = new ArrayList<>();
@@ -35,7 +39,7 @@ public class SinglePostController {
                 postComments.add(comment);
             }
         }
-
+        model.addAttribute("user", DbUser);
         model.addAttribute("post", post);
         model.addAttribute("comments", postComments);
         return "posts/singlePost";
