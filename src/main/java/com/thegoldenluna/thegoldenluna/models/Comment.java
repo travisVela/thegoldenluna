@@ -1,10 +1,15 @@
 package com.thegoldenluna.thegoldenluna.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 
 import javax.persistence.*;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Entity
@@ -18,9 +23,9 @@ public class Comment {
     private String body;
 
     @CreationTimestamp
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     @Column(nullable = false)
-    @DateTimeFormat(pattern="dd.MM.yyyy HH:mm:ss")
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date dateCreated;
 
     @JsonIgnore
@@ -29,7 +34,7 @@ public class Comment {
     private User user;
 
     @JsonIgnore
-    @ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "post_id", referencedColumnName = "id")
     private Post post;
 
@@ -80,5 +85,17 @@ public class Comment {
 
     public void setPost(Post post) {
         this.post = post;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Comment{" +
+                "id=" + id +
+                ", body='" + body + '\'' +
+                ", dateCreated=" + dateCreated +
+                ", user=" + user +
+                ", post=" + post +
+                '}';
     }
 }
