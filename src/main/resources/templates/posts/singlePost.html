@@ -42,14 +42,13 @@
                         <p th:text="${comment.body}" class="mb-0"></p>
                         <a th:if="${user.id == comment.getUser().id}" th:href="@{/profile}">
                             <small th:text="'posted by: ' +  ${comment.getUser().username}"
-
                                    th:value="${post.user.id}"
                                    class="popover-target">
                             </small>
+                            <a th:href="@{/edit/(id=${comment.id})}" class="btn btn-primary btn.sm commentEdit">Edit</a>
                             <a th:href="@{'/remove/' + ${comment.id}}" class="btn btn-primary btn-sm commentDelete">
                                 Delete
                             </a>
-
                         </a>
                         <a th:unless="${user.id == comment.getUser().id}" th:href="@{'/profile/' + ${comment.user.id}}">
                             <small th:text="'posted by: ' +  ${comment.getUser().username}"
@@ -97,6 +96,41 @@
                                     <textarea class="form-control" id="body" name="body"></textarea>
                                 </div>
                                 <input type="hidden" name="postId" th:value="${post.id}" />
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <input type="submit" class="btn btn-primary" value="Submit" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <!--=================================-->
+        <!--   Modal for editing a comment   -->
+        <!--=================================-->
+
+        <div class="row">
+            <form th:action="@{/save-edit}" th:method="post" >
+                <div class="modal fade" id="editCommentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="modalEditTitle">Edit Comment</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label for="editBody" class="col-form-label">body</label>
+                                    <textarea class="form-control" id="editBody" name="body"></textarea>
+                                </div>
+                                <input type="hidden" class="form-control" id="editId"  name="id" />
+                                <input type="hidden" name="postId" id="postId" th:value="${post.id}" />
+                                <input type="hidden" name="dateCreated" id="dateCreated"  />
 
                             </div>
                             <div class="modal-footer">

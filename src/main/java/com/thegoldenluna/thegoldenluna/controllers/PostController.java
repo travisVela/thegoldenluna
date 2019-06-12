@@ -38,6 +38,12 @@ public class PostController {
             return "redirect:/profile";
     }
 
+    @GetMapping("/findOne")
+    @ResponseBody
+    public Post findOne(long id) {
+        return postRepo.findOne(id);
+    }
+
     @PostMapping("/save")
     public String save(Post post) {
         User postSessionUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();

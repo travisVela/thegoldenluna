@@ -42,12 +42,6 @@ public class ProfileController {
         return "users/profile";
     }
 
-    @GetMapping("/findOne")
-    @ResponseBody
-    public Post findOne(long id) {
-        return postRepo.findOne(id);
-    }
-
     // this is the generic user profile
     @GetMapping("/profile/{id}")
     public String thisProfile(@PathVariable long id, Model model) {

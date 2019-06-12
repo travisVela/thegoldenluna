@@ -46,6 +46,22 @@ $(document).ready(function(){
 
     });
 
+    // single post page edit comment modal
+    $('.commentEdit').on('click', function(e) {
+        e.preventDefault();
+        let href = $(this).attr('href');
+
+        $.get(href, function(comment, status) {
+
+            $('#editId').val(comment.id);
+            $('#editBody').val(comment.body);
+            $('#dateCreated').val(comment.dateCreated);
+
+        });
+        $('#editCommentModal').modal();
+
+    });
+
     // single post page delete comment modal
     $('.commentDelete').on('click', function(e) {
         e.preventDefault()

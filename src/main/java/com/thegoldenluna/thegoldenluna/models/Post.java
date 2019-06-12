@@ -37,7 +37,7 @@ public class Post {
     private User user;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "post")
-    List<Comment> comments;
+    private List<Comment> comments;
 
     public Post(){}
 
