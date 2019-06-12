@@ -53,12 +53,6 @@ public class PostController {
         postRepo.delete(id);
         return "redirect:/profile";
     }
-//    @GetMapping("/delete")
-//    public String deletePost(long id) {
-//        Post postToDelete = postRepo.findOne(id);
-//        System.out.println("hello " + postToDelete.getId());
-//        postRepo.delete(postToDelete.getId());
-//        return "redirect:/profile";
-//    }
+
 
 }
