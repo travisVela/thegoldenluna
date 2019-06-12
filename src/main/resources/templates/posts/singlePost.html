@@ -17,6 +17,84 @@
         </div>
     </div>
 
+    <div class="container my-5 rounded">
+        <!--============================================-->
+        <!--   button to display create comment modal   -->
+        <!--============================================-->
+
+        <div class="row my-5">
+            <div class="col-md-6 mx-auto"><!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary mx-auto" data-toggle="modal"
+                        data-target="#leaveCommentModal">
+                    Leave Comment
+                </button>
+            </div>
+        </div>
+
+        <!--============================-->
+        <!--   row of post's comments   -->
+        <!--============================-->
+
+        <div class="row">
+            <div class="col-md-6 col-with-border mx-auto">
+                <div class="row" th:each="comment : ${comments}">
+                    <div class="col mx-auto mb-2">
+                        <p th:text="${comment.body}" class="mb-0"></p>
+                        <small th:text="'posted by: ' +  ${comment.getUser().username}"
+                               class="popover-target">
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--==================-->
+        <!--   popover card   -->
+        <!--==================-->
+
+        <div class="card hover-popover">
+            <div class="card-body">
+                <img th:src="@{${post.user.imageURL}}" class="profile-img" />
+                <p th:text="${post.user.bio}"></p>
+            </div>
+        </div>
+
+
+        <!--===================-->
+        <!--   comment modal   -->
+        <!--===================-->
+
+        <div class="row">
+            <form th:action="@{/leave}" th:method="post" >
+                <div class="modal fade" id="leaveCommentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLongTitle">Create Post</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label for="body" class="col-form-label">body</label>
+                                    <textarea class="form-control" id="body" name="body"></textarea>
+                                </div>
+                                <input type="hidden" name="postId" th:value="${post.id}" />
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <input type="submit" class="btn btn-primary" value="Submit" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </div>
+
     <th:block th:replace="fragments/js :: js" />
 
 </body>

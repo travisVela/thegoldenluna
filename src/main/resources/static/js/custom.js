@@ -15,6 +15,13 @@ $(document).ready(function(){
         });
 
 
+    //==============
+    //            //
+    //   modals   //
+    //            //
+    //==============
+
+    //profile page edit post modal
 
     $('.postEdit').on('click', function(e) {
         e.preventDefault();
@@ -29,6 +36,8 @@ $(document).ready(function(){
         $('#editPostModal').modal();
     });
 
+    // profile page delete post modal
+
     $('.postDelete').on('click', function(e) {
         e.preventDefault();
         let href = $(this).attr('href');
@@ -36,5 +45,8 @@ $(document).ready(function(){
         $('#deletePostModal').modal();
 
     })
+
+    // single post page leave comment modal
+
 
 });
