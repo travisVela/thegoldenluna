@@ -35,7 +35,6 @@ public class SinglePostController {
                 postComments.add(comment);
             }
         }
-        System.out.println(post.getFeaturedImgURL());
 
         model.addAttribute("post", post);
         model.addAttribute("comments", postComments);

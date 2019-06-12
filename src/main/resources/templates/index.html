@@ -20,7 +20,9 @@
                             <img th:src="@{${post.featuredImgURL}}" class="profile-post-img"/>
                             <h3 th:text="${post.title}"></h3>
                             <p th:text="${post.body}"></p>
-                            <p th:text="'posted by: ' + ${post.getUser().username}" class="popover-target"></p>
+                            <a th:href="@{'/profile/' + ${post.user.id}}" class="popover-target">
+                                <p th:text="'posted by: ' + ${post.user.username}"></p>
+                            </a>
                             <a th:href="@{'mailto:' + ${post.getUser().email}}">
                                 <p th:text="${post.getUser().email}"></p>
                             </a>

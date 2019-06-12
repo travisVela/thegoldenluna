@@ -40,9 +40,13 @@
                 <div class="row" th:each="comment : ${comments}">
                     <div class="col mx-auto mb-2">
                         <p th:text="${comment.body}" class="mb-0"></p>
-                        <small th:text="'posted by: ' +  ${comment.getUser().username}"
-                               class="popover-target">
-                        </small>
+                        <a th:href="@{'/profile/' + ${comment.user.id}}">
+                            <small th:text="'posted by: ' +  ${comment.getUser().username}"
+                                   id="userId"
+                                   th:value="${post.user.id}"
+                                   class="popover-target">
+                            </small>
+                        </a>
                     </div>
                 </div>
             </div>
