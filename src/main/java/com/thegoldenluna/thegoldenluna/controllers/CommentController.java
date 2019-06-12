@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -55,6 +56,17 @@ public class CommentController {
         comment.setPost(postRepo.findOne(id));
         commentRepo.save(comment);
         return "redirect:/post/" + id;
+    }
+
+    @GetMapping("/remove/{id}")
+    public String removeComment(@PathVariable long id, Model model) {
+
+        Comment comment = commentRepo.findOne(id);
+        long postId = comment.getPost().getId();
+        System.out.println(postId);
+        model.addAttribute("comment", comment);
+        commentRepo.delete(id);
+        return "redirect:/post/" + postId;
     }
 
 

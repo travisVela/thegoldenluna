@@ -44,9 +44,15 @@ $(document).ready(function(){
         $('#delRef').attr('href', href);
         $('#deletePostModal').modal();
 
-    })
+    });
 
-    // single post page leave comment modal
+    // single post page delete comment modal
+    $('.commentDelete').on('click', function(e) {
+        e.preventDefault()
+        let href = $(this).attr('href');
+        $('#commentDelRef').attr('href', href)
+        $('#deleteCommentModal').modal();
+    });
 
 
 });
