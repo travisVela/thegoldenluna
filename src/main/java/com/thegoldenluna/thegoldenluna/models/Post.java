@@ -22,11 +22,17 @@ public class Post {
     @Column(nullable = false, length = 1000)
     private String body;
 
-//    @CreationTimestamp
-//    @Temporal(TemporalType.TIMESTAMP)
-//    @Column(nullable = false)
-//    @DateTimeFormat(pattern="dd-MM-yyyy HH:mm:ss")
-//    private Date dateCreated;
+    @CreationTimestamp
+    @Temporal(TemporalType.DATE)
+    @Column(nullable = false)
+    @DateTimeFormat(pattern="yyyy-MM-dd")
+    private Date dateCreated;
+
+    @CreationTimestamp
+    @Temporal(TemporalType.TIME)
+    @Column(nullable = false)
+    @DateTimeFormat(pattern = "HH:mm:ss")
+    private java.util.Date timeCreated;
 
     @Column(name = "featuredImg_url", nullable = false)
     private String featuredImgURL;
@@ -41,10 +47,11 @@ public class Post {
 
     public Post(){}
 
-    public Post(String title, String body, String featuredImgURL, User user, List<Comment> comments) {
+    public Post(String title, String body, Date dateCreated, Date timeCreated ,String featuredImgURL, User user, List<Comment> comments) {
         this.title = title;
         this.body = body;
-//        this.dateCreated = dateCreated;
+        this.dateCreated = dateCreated;
+        this.timeCreated = timeCreated;
         this.featuredImgURL = featuredImgURL;
         this.user = user;
         this.comments = comments;
@@ -74,13 +81,21 @@ public class Post {
         this.body = body;
     }
 
-//    public Date getDateCreated() {
-//        return dateCreated;
-//    }
+    public Date getDateCreated() {
+        return dateCreated;
+    }
 
-//    public void setDateCreated(Date dateCreated) {
-//        this.dateCreated = dateCreated;
-//    }
+    public void setDateCreated(Date dateCreated) {
+        this.dateCreated = dateCreated;
+    }
+
+    public Date getTimeCreated() {
+        return timeCreated;
+    }
+
+    public void setTimeCreated(Date timeCreated) {
+        this.timeCreated = timeCreated;
+    }
 
     public String getFeaturedImgURL() {
 

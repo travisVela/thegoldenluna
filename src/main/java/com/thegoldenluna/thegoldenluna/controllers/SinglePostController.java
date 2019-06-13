@@ -39,8 +39,10 @@ public class SinglePostController {
                 postComments.add(comment);
             }
         }
+        Iterable<Comment> commentsDec = commentRepo.findByDateCreated();
         model.addAttribute("user", DbUser);
         model.addAttribute("post", post);
+        model.addAttribute("commentsDesc", commentsDec);
         model.addAttribute("comments", postComments);
         return "posts/singlePost";
     }

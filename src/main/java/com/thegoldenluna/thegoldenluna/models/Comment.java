@@ -9,6 +9,7 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 
 import javax.persistence.*;
+import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -28,6 +29,12 @@ public class Comment {
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date dateCreated;
 
+    @CreationTimestamp
+    @Temporal(TemporalType.TIME)
+    @Column(nullable = false)
+    @DateTimeFormat(pattern = "HH:mm:ss")
+    private java.util.Date timeCreated;
+
     @JsonIgnore
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
@@ -40,9 +47,10 @@ public class Comment {
 
     public Comment(){}
 
-    public Comment(String body, Date dateCreated, User user, Post post) {
+    public Comment(String body, Date dateCreated, Date timeCreated, User user, Post post) {
         this.body = body;
         this.dateCreated = dateCreated;
+        this.timeCreated = timeCreated;
         this.user = user;
         this.post = post;
     }
@@ -69,6 +77,14 @@ public class Comment {
 
     public void setDateCreated(Date dateCreated) {
         this.dateCreated = dateCreated;
+    }
+
+    public Date getTimeCreated() {
+        return timeCreated;
+    }
+
+    public void setTimeCreated(Date timeCreated) {
+        this.timeCreated = timeCreated;
     }
 
     public User getUser() {

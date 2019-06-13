@@ -31,6 +31,9 @@ $(document).ready(function(){
             $('#editId').val(post.id);
             $('#editTitle').val(post.title);
             $('#editBody').val(post.body);
+            $('#dateCreated').val(post.dateCreated);
+            console.log(typeof post.dateCreated);
+            $('#timeCreated').val(post.timeCreated);
             $('#editFeaturedImg').val(post.featuredImgURL);
         });
         $('#editPostModal').modal();
@@ -56,6 +59,7 @@ $(document).ready(function(){
             $('#editId').val(comment.id);
             $('#editBody').val(comment.body);
             $('#dateCreated').val(comment.dateCreated);
+            $('#timeCreated').val(comment.timeCreated);
 
         });
         $('#editCommentModal').modal();
