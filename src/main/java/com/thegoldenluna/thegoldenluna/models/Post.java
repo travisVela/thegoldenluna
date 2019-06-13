@@ -45,9 +45,17 @@ public class Post {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "post")
     private List<Comment> comments;
 
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "post_categories",
+            joinColumns = {@JoinColumn(name = "post_id")},
+            inverseJoinColumns = {@JoinColumn(name = "category_id")}
+    )
+    private List<Category> categories;
+
     public Post(){}
 
-    public Post(String title, String body, Date dateCreated, Date timeCreated ,String featuredImgURL, User user, List<Comment> comments) {
+    public Post(String title, String body, Date dateCreated, Date timeCreated ,String featuredImgURL, User user, List<Comment> comments, List<Category> categories) {
         this.title = title;
         this.body = body;
         this.dateCreated = dateCreated;
@@ -55,6 +63,7 @@ public class Post {
         this.featuredImgURL = featuredImgURL;
         this.user = user;
         this.comments = comments;
+        this.categories = categories;
     }
 
     public long getId() {
@@ -122,14 +131,12 @@ public class Post {
         this.comments = comments;
     }
 
-    @Override
-    public String toString() {
-        return "Post{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", body='" + body + '\'' +
-                ", featuredImgURL='" + featuredImgURL + '\'' +
-                ", user=" + user +
-                '}';
+    public List<Category> getCategories() {
+        return categories;
     }
+
+    public void setCategories(List<Category> categories) {
+        this.categories = categories;
+    }
+
 }
