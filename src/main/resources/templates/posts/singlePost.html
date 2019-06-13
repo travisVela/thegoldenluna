@@ -37,7 +37,7 @@
 
         <div class="row">
             <div class="col-md-6 col-with-border mx-auto">
-                <div class="row" th:each="comment : ${comments}">
+                <div class="row" th:each="comment : ${commentsDesc}">
                     <div class="col mx-auto mb-2">
                         <p th:text="${comment.body}" class="mb-0"></p>
                         <a th:if="${user.id == comment.getUser().id}" th:href="@{/profile}">
@@ -45,7 +45,7 @@
                                    th:value="${post.user.id}"
                                    class="popover-target">
                             </small>
-                            <a th:href="@{/edit/(id=${comment.id})}" class="btn btn-primary btn.sm commentEdit">Edit</a>
+                            <a th:href="@{/edit/(id=${comment.id})}" class="btn btn-primary btn-sm commentEdit">Edit</a>
                             <a th:href="@{'/remove/' + ${comment.id}}" class="btn btn-primary btn-sm commentDelete">
                                 Delete
                             </a>
@@ -131,6 +131,7 @@
                                 <input type="hidden" class="form-control" id="editId"  name="id" />
                                 <input type="hidden" name="postId" id="postId" th:value="${post.id}" />
                                 <input type="hidden" name="dateCreated" id="dateCreated"  />
+                                <input type="hidden" name="timeCreated" id="timeCreated" />
 
                             </div>
                             <div class="modal-footer">

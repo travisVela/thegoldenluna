@@ -61,10 +61,16 @@ public class CommentController {
     }
 
     @PostMapping("/save-edit")
-    public String saveEditComment(Comment comment, @RequestParam(name = "postId") long postId, @RequestParam(name = "dateCreated") @DateTimeFormat(pattern = "yyyy-MM-dd") Date date) {
+    public String saveEditComment(Comment comment,
+                                  @RequestParam(name = "postId") long postId,
+                                  @RequestParam(name = "dateCreated") @DateTimeFormat(pattern = "yyyy-MM-dd") Date date,
+                                  @RequestParam(name = "timeCreated") @DateTimeFormat(pattern = "HH:mm:ss") Date time)
+    {
+
         User sessionUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User DbUser = userRepo.findOne(sessionUser.getId());
         comment.setDateCreated(date);
+        comment.setTimeCreated(time);
         comment.setPost(postRepo.findOne(postId));
         System.out.println("post id: " + comment.getPost());
         System.out.println("date: " + date);
