@@ -39,6 +39,9 @@
                             <img th:src="@{${post.featuredImgURL}}" class="profile-post-img"/>
                             <h3 th:text="${post.title}"></h3>
                             <p th:text="${post.body}"></p>
+                            <div class="col" th:each="cat : ${post.getPost_categories()}">
+                                <small th:text="'categories: ' + ${cat.title}"></small>
+                            </div>
                             <a th:href="@{findOne/(id=${post.id})}" class="btn btn-primary postEdit">Edit</a>
                             <a th:href="@{'/delete/' + ${post.id}}" class="btn btn-primary postDelete">Delete</a>
                         </div>
@@ -72,6 +75,19 @@
                                     <textarea class="form-control" id="body" name="body"></textarea>
                                 </div>
                                 <input type="hidden" id="featuredImgURL" name="featuredImgURL" value="https://cdn.filestackcontent.com/rRr07m4MQlmTHBaEVnGA"/>
+                                <div class="dropdown">
+                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Categories
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <div th:each="category : ${categories}">
+                                            <div class="form-check form-check-inline form-group">
+                                                <input class="form-check-input" type="checkbox" id="category" name="checked" th:value="${category.title}" />
+                                                <label class="form-check-label" for="category" th:value="${category.title}" th:text="${category.title}" ></label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 
                                 <!--<div class="row">-->
                                     <!--<form id="pick-form">-->

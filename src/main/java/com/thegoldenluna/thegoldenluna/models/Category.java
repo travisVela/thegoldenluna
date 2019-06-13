@@ -13,12 +13,7 @@ public class Category {
     @Column(nullable = false, length = 100)
     private String title;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-        @JoinTable(
-            name="post_categories",
-            joinColumns={@JoinColumn(name = "category_id")},
-            inverseJoinColumns = {@JoinColumn(name = "post_id")}
-        )
+    @ManyToMany(mappedBy = "post_categories")
     private List<Post> posts;
 
 
