@@ -1,7 +1,9 @@
 package com.thegoldenluna.thegoldenluna.controllers;
 
+import com.thegoldenluna.thegoldenluna.models.Category;
 import com.thegoldenluna.thegoldenluna.models.Post;
 import com.thegoldenluna.thegoldenluna.models.User;
+import com.thegoldenluna.thegoldenluna.repositories.CategoryRepo;
 import com.thegoldenluna.thegoldenluna.repositories.PostRepo;
 import com.thegoldenluna.thegoldenluna.repositories.UserRepo;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -16,11 +18,13 @@ import java.util.List;
 public class ProfileController {
     private UserRepo userRepo;
     private PostRepo postRepo;
+    private CategoryRepo categoryRepo;
 
-    public ProfileController(UserRepo userRepo, PostRepo postRepo) {
+    public ProfileController(UserRepo userRepo, PostRepo postRepo, CategoryRepo categoryRepo) {
 
         this.userRepo = userRepo;
         this.postRepo = postRepo;
+        this.categoryRepo = categoryRepo;
     }
 
     // this is the logged in users profile
@@ -28,6 +32,7 @@ public class ProfileController {
     public String profile(Model model) {
         User sessionUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User userDB = userRepo.findOne(sessionUser.getId());
+
 
         // find all session user posts
         List<Post> userPosts = new ArrayList<>();
@@ -37,8 +42,19 @@ public class ProfileController {
             }
         }
 
+//        List<Category> postCats = new ArrayList<>();
+//        for (Post post : userPosts) {
+//            for (Category cat : post.getPost_categories()) {
+//                postCats.add(cat);
+//            }
+//        }
+
+
         model.addAttribute("user", userDB);
         model.addAttribute("posts", userPosts);
+        model.addAttribute("categories", categoryRepo.findAll());
+
+
         return "users/profile";
     }
 

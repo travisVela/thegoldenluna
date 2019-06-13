@@ -38,24 +38,27 @@ public class Post {
     private String featuredImgURL;
 
     @JsonIgnore
-    @ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "post")
     private List<Comment> comments;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+//    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "post")
+//    private List<Category> categories;
+
+    @ManyToMany
     @JoinTable(
             name = "post_categories",
             joinColumns = {@JoinColumn(name = "post_id")},
             inverseJoinColumns = {@JoinColumn(name = "category_id")}
     )
-    private List<Category> categories;
+    private List<Category> post_categories;
 
     public Post(){}
 
-    public Post(String title, String body, Date dateCreated, Date timeCreated ,String featuredImgURL, User user, List<Comment> comments, List<Category> categories) {
+    public Post(String title, String body, Date dateCreated, Date timeCreated ,String featuredImgURL, User user, List<Comment> comments,  List<Category> post_categories) {
         this.title = title;
         this.body = body;
         this.dateCreated = dateCreated;
@@ -63,7 +66,8 @@ public class Post {
         this.featuredImgURL = featuredImgURL;
         this.user = user;
         this.comments = comments;
-        this.categories = categories;
+//        this.categories = categories;
+        this.post_categories = post_categories;
     }
 
     public long getId() {
@@ -131,12 +135,20 @@ public class Post {
         this.comments = comments;
     }
 
-    public List<Category> getCategories() {
-        return categories;
+//    public List<Category> getCategories() {
+//        return post_categories;
+//    }
+//
+//    public void setCategories(List<Category> categories) {
+//        this.post_categories = categories;
+//    }
+
+
+    public List<Category> getPost_categories() {
+        return post_categories;
     }
 
-    public void setCategories(List<Category> categories) {
-        this.categories = categories;
+    public void setPost_categories(List<Category> post_categories) {
+        this.post_categories = post_categories;
     }
-
 }
