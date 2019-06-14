@@ -51,12 +51,9 @@ public class PostController {
                 String categoryTitle = category.getTitle();
                     if (checked.contains(categoryTitle)) {
                         checkedCats.add(category);
-                        System.out.println("value of checked: " + checked);
-                        System.out.println("value of cat: " + category.getTitle());
                 }
             }
 
-        System.out.println(checkedCats.size());
             post.setPost_categories(checkedCats);
             postRepo.save(post);
             return "redirect:/profile";

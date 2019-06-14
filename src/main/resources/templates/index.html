@@ -20,6 +20,15 @@
                             <img th:src="@{${post.featuredImgURL}}" class="profile-post-img"/>
                             <h3 th:text="${post.title}"></h3>
                             <p th:text="${post.body}"></p>
+                            <div class="row">
+                                <small>categories: </small>
+                                <a th:each="cat : ${post.getPost_categories()}"
+                                   th:href="@{'posts/category/' + ${cat.id}}">
+                                    <small class="mx-2"
+                                           th:text="${cat.title}">
+                                    </small>
+                                </a>
+                            </div>
                             <a th:href="@{'/profile/' + ${post.user.id}}" class="popover-target">
                                 <p th:text="'posted by: ' + ${post.user.username}"></p>
                             </a>

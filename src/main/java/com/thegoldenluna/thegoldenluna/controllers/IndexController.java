@@ -19,6 +19,8 @@ public class IndexController {
     @GetMapping("/home")
     public String index(Model model) {
 
+
+
         model.addAttribute("posts", postRepo.findAll());
         return "index";
     }

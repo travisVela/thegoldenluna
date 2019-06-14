@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+   <th:block th:replace="fragments/head :: head(Categories)" />
+</head>
+<body>
+    <th:block th:replace="fragments/nav :: nav" />
+
+    <div class="container">
+        <div class="row">
+            <div th:each="post : ${posts}" class="col-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 th:text="${post.title}"></h3>
+                        <p th:text="${post.body}"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <th:block th:replace="fragments/js :: js" />
+</body>
+</html>
