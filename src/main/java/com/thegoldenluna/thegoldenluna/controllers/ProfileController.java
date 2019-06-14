@@ -42,14 +42,6 @@ public class ProfileController {
             }
         }
 
-//        List<Category> postCats = new ArrayList<>();
-//        for (Post post : userPosts) {
-//            for (Category cat : post.getPost_categories()) {
-//                postCats.add(cat);
-//            }
-//        }
-
-
         model.addAttribute("user", userDB);
         model.addAttribute("posts", userPosts);
         model.addAttribute("categories", categoryRepo.findAll());
@@ -76,4 +68,5 @@ public class ProfileController {
         model.addAttribute("user", thisUser);
         return "users/user-profile";
     }
+
 }
