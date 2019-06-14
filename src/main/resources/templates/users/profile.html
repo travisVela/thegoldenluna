@@ -154,9 +154,13 @@
                                 </div>
                                 <input type="hidden" class="form-control" id="editId" name="id" />
                                 <input type="hidden" name="featuredImgURL" id="editFeaturedImg"/>
-                                <input type="hidden" name="dateCreated" id="dateCreated" />
+                                <input type="hidden" name="dateCreated" id="dateCreated"  />
                                 <input type="hidden" name="timeCreated" id="timeCreated" />
-
+                                <div th:each="post : ${posts}">
+                                    <div th:each="cat : ${post.getPost_categories()}">
+                                        <input th:if="${post.user.id == user.id}" type="hidden" id="postCats" name="postCats" th:value="${cat.id}" />
+                                    </div>
+                                </div>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

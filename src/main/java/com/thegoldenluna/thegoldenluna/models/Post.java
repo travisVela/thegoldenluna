@@ -47,7 +47,7 @@ public class Post {
 
 //    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "post")
 //    private List<Category> categories;
-
+    @JsonIgnore
     @ManyToMany
     @JoinTable(
             name = "post_categories",
@@ -151,4 +151,5 @@ public class Post {
     public void setPost_categories(List<Category> post_categories) {
         this.post_categories = post_categories;
     }
+
 }

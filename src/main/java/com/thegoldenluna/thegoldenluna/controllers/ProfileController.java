@@ -42,6 +42,7 @@ public class ProfileController {
             }
         }
 
+
         model.addAttribute("user", userDB);
         model.addAttribute("posts", userPosts);
         model.addAttribute("categories", categoryRepo.findAll());

@@ -1,5 +1,7 @@
 package com.thegoldenluna.thegoldenluna.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -13,6 +15,7 @@ public class Category {
     @Column(nullable = false, length = 100)
     private String title;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "post_categories")
     private List<Post> posts;
 

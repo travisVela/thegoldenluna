@@ -62,18 +62,22 @@ public class PostController {
     @GetMapping("/findOne")
     @ResponseBody
     public Post findOne(long id) {
+
         return postRepo.findOne(id);
     }
 
     @PostMapping("/save")
     public String save(Post post,
                        @RequestParam(name = "dateCreated") @DateTimeFormat(pattern = "yyyy-MM-dd")Date date,
-                       @RequestParam(name = "timeCreated") @DateTimeFormat(pattern = "HH:mm:ss") Date time)
+                       @RequestParam(name = "timeCreated") @DateTimeFormat(pattern = "HH:mm:ss") Date time,
+                       @RequestParam(name = "postCats") List<Category> postCats)
     {
         User postSessionUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User postDbUser = userRepo.findOne(postSessionUser.getId());
+
         post.setDateCreated(date);
         post.setTimeCreated(time);
+        post.setPost_categories(postCats);
         post.setUser(postDbUser);
         postRepo.save(post);
         return "redirect:/profile";

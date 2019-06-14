@@ -27,13 +27,15 @@ $(document).ready(function(){
         e.preventDefault();
         let href = $(this).attr('href');
 
-        $.get(href, function(post, status) {
+        $.get(href, function(post, categories, status) {
             $('#editId').val(post.id);
             $('#editTitle').val(post.title);
             $('#editBody').val(post.body);
             $('#dateCreated').val(post.dateCreated);
             $('#timeCreated').val(post.timeCreated);
             $('#editFeaturedImg').val(post.featuredImgURL);
+            $('')
+
         });
         $('#editPostModal').modal();
     });
