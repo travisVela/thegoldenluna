@@ -41,10 +41,20 @@ public class SinglePostController {
         }
         Iterable<Comment> commentsDec = commentRepo.findByDateCreated();
 
+        List<Post> userPosts = new ArrayList<>();
+        for (Post p : postRepo.findAll()) {
+            if (p.getUser().getId() == DbUser.getId()) {
+                if (p.getId() != post.getId())
+                userPosts.add(p);
+            }
+        }
+
+
         model.addAttribute("user", DbUser);
         model.addAttribute("post", post);
         model.addAttribute("comments", postComments);
         model.addAttribute("commentsDesc", commentsDec);
+        model.addAttribute("posts", userPosts);
         return "posts/singlePost";
     }
 }
