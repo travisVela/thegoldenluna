@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-   <th:block th:replace="fragments/head :: head(Categories)" />
+    <th:block th:replace="fragments/head :: head(Categories)" />
 </head>
 <body>
     <th:block th:replace="fragments/nav :: nav" />
-
+    <div class="container-fluid">
+        <div id="index-jumbotron-bg" class="jumbotron">
+        </div>
+    </div>
     <div class="container">
         <div class="row">
             <div th:each="post : ${posts}" class="col-md-4">
@@ -14,6 +17,57 @@
                         <h3 th:text="${post.title}"></h3>
                         <p th:text="${post.body}"></p>
                     </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12">
+                <div id="otherPosts" class="carousel slide" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                        <li data-target="#cotherPosts" data-slide-to="0" class="active"></li>
+                        <li data-target="#otherPosts" data-slide-to="1"></li>
+                        <li data-target="#otherPosts" data-slide-to="2"></li>
+                    </ol>
+                    <div class="carousel-inner">
+
+                        <div class="carousel-item active">
+                            <div class="row bg-secondary">
+                                <a th:href="@{'/profile/' + ${user.id}}">
+                                    <div class="col-md-8 mx-auto">
+                                        <img class=" profile-post-img" th:src="@{/images/goldenLuna.png}"
+                                             alt="First slide"/>
+                                        <div class="carousel-caption d-none d-md-block text-dark">
+                                            <h1 class="display-2">Look!</h1>
+                                            <h1 class="display-4">more categories</h1>
+
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="carousel-item" th:each="otherCat : ${otherCats}" >
+                            <div class="row bg-secondary">
+                                <a th:href="@{'/posts/category/' + ${otherCat.id}}">
+                                    <div class="col-md-8 mx-auto">
+                                        <img class=" profile-post-img" th:src="@{/images/goldenLuna.png}"
+                                             alt="First slide"/>
+                                        <div class="carousel-caption d-none d-md-block text-dark d-flex align-items-center">
+                                            <h1 class="display-4" th:text="${otherCat.title}"></h1>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="carousel-control-prev" href="#otherPosts" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#otherPosts" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
                 </div>
             </div>
         </div>
