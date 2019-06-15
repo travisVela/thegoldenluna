@@ -2,7 +2,6 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <th:block th:replace="fragments/head :: head(Home)" />
-
 </head>
 <body>
     <th:block th:replace="fragments/nav :: nav" />
@@ -10,39 +9,109 @@
         <div id="index-jumbotron-bg" class="jumbotron">
         </div>
     </div>
+    <!--<div class="container">-->
+        <!--<div class="row">-->
+            <!--<div th:each="post : ${posts}" class="col-md-4 mb-5">-->
+                <!--<a th:href="@{'/post/' + ${post.id}}">-->
+                    <!--<div class="card">-->
+                        <!--<div class="card-body">-->
+                            <!--<img th:src="@{${post.featuredImgURL}}" class="profile-post-img"/>-->
+                            <!--<h3 th:text="${post.title}"></h3>-->
+                            <!--<p th:text="${post.body}"></p>-->
+                            <!--<div class="row">-->
+                                <!--<small>categories: </small>-->
+                                <!--<a th:each="cat : ${post.getPost_categories()}"-->
+                                   <!--th:href="@{'posts/category/' + ${cat.id}}">-->
+                                    <!--<small class="mx-2"-->
+                                           <!--th:text="${cat.title}">-->
+                                    <!--</small>-->
+                                <!--</a>-->
+                            <!--</div>-->
+                            <!--<a th:href="@{'/profile/' + ${post.user.id}}" class="popover-target">-->
+                                <!--<p th:text="'posted by: ' + ${post.user.username}"></p>-->
+                            <!--</a>-->
+                            <!--<a th:href="@{'mailto:' + ${post.getUser().email}}">-->
+                                <!--<p th:text="${post.getUser().email}"></p>-->
+                            <!--</a>-->
+                        <!--</div>-->
+                        <!--<div class="card hover-popover">-->
+                            <!--<div class="card-body">-->
+                                <!--<img th:src="@{${post.user.imageURL}}" class="profile-img" />-->
+                                <!--<p th:text="${post.user.bio}"></p>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</a>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+
+    <!--===================-->
+    <!--   cards filters   -->
+    <!--===================-->
+
     <div class="container">
-        <div class="row">
-            <div th:each="post : ${posts}" class="col-md-4 mb-5">
-                <a th:href="@{'/post/' + ${post.id}}">
-                    <div class="card">
-                        <div class="card-body">
-                            <img th:src="@{${post.featuredImgURL}}" class="profile-post-img"/>
-                            <h3 th:text="${post.title}"></h3>
-                            <p th:text="${post.body}"></p>
-                            <div class="row">
-                                <small>categories: </small>
-                                <a th:each="cat : ${post.getPost_categories()}"
-                                   th:href="@{'posts/category/' + ${cat.id}}">
-                                    <small class="mx-2"
-                                           th:text="${cat.title}">
-                                    </small>
-                                </a>
-                            </div>
-                            <a th:href="@{'/profile/' + ${post.user.id}}" class="popover-target">
-                                <p th:text="'posted by: ' + ${post.user.username}"></p>
+        <div class="card text-center">
+            <div class="card-header">
+                <ul class="nav nav-tabs card-header-tabs">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-toggle="tab" href="#all">All</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#category">Categories</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="card-body tab-content">
+                <div id="all" class="tab-pane active">
+                    <div class="row">
+                        <div th:each="post : ${posts}" class="col-md-4 mb-5">
+                            <a th:href="@{'/post/' + ${post.id}}">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <img th:src="@{${post.featuredImgURL}}" class="profile-post-img"/>
+                                        <h3 th:text="${post.title}"></h3>
+                                        <p th:text="${post.body}"></p>
+                                        <div class="row">
+                                            <small>categories:</small>
+                                            <a th:each="cat : ${post.getPost_categories()}"
+                                               th:href="@{'posts/category/' + ${cat.id}}">
+                                                <small class="mx-2"
+                                                       th:text="${cat.title}">
+                                                </small>
+                                            </a>
+                                        </div>
+                                        <a th:href="@{'/profile/' + ${post.user.id}}" class="popover-target">
+                                            <p th:text="'posted by: ' + ${post.user.username}"></p>
+                                        </a>
+                                        <a th:href="@{'mailto:' + ${post.getUser().email}}">
+                                            <p th:text="${post.getUser().email}"></p>
+                                        </a>
+                                    </div>
+                                    <div class="card hover-popover">
+                                        <div class="card-body">
+                                            <img th:src="@{${post.user.imageURL}}" class="profile-img"/>
+                                            <p th:text="${post.user.bio}"></p>
+                                        </div>
+                                    </div>
+                                </div>
                             </a>
-                            <a th:href="@{'mailto:' + ${post.getUser().email}}">
-                                <p th:text="${post.getUser().email}"></p>
-                            </a>
-                        </div>
-                        <div class="card hover-popover">
-                            <div class="card-body">
-                                <img th:src="@{${post.user.imageURL}}" class="profile-img" />
-                                <p th:text="${post.user.bio}"></p>
-                            </div>
                         </div>
                     </div>
-                </a>
+                </div>
+                <div id="category" class="tab-pane">
+                    <div class="row">
+                        <div th:each="category : ${categories}" class="col-md-3 my-2">
+                            <a th:href="@{'posts/category/' + ${category.id}}">
+                                <div class="card cat-card">
+                                    <div class="card-body col d-flex justify-content-center align-items-center">
+                                        <h3 th:text="${category.title}"></h3>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

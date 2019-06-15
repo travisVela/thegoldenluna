@@ -75,5 +75,23 @@ $(document).ready(function(){
         $('#deleteCommentModal').modal();
     });
 
+    //   cat card bg generator
+
+
+    function random_rgb(num) {
+        let val = Math.round(Math.random() * num);
+        return val;
+    }
+
+    $('.cat-card').css('background-color', function(){
+        let r = random_rgb(256);
+        let g = random_rgb(256);
+        let b = random_rgb(256);
+        let rgb = 'rgb(' + r + ', ' + g  + ', ' + b + ')';
+
+        console.log("rgb " + rgb)
+        return rgb;
+    });
+
 
 });
