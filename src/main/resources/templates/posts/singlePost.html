@@ -127,8 +127,9 @@
                             </div>
                             <div class="modal-body">
                                 <div class="form-group">
-                                    <label for="editBody" class="col-form-label">body</label>
-                                    <textarea class="form-control" id="editBody" name="body"></textarea>
+                                    <label for="editCommentBody" class="col-form-label">body</label>
+                                    <textarea class="form-control" id="editCommentBody" name="body"></textarea>
+                                    <div id="editCommentBodyWarning"></div>
                                 </div>
                                 <input type="hidden" class="form-control" id="editId"  name="id" />
                                 <input type="hidden" name="postId" id="postId" th:value="${post.id}" />
@@ -138,7 +139,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <input type="submit" class="btn btn-primary" value="Submit" />
+                                <input id="editCommentSubmit" type="submit" class="btn btn-primary" value="Submit" />
                             </div>
                         </div>
                     </div>

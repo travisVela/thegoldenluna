@@ -71,28 +71,31 @@
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            <div class="modal-body">
+                            <div id="createPost" class="modal-body">
                                 <div class="form-group">
-                                    <label for="title" class="col-form-label">title</label>
-                                    <input type="text" class="form-control" id="title" name="title" />
+                                    <label for="createPostTitle" class="col-form-label">title</label>
+                                    <input type="text" class="form-control" id="createPostTitle" name="title" />
+                                    <div id="createPostTitleWarning"></div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="body" class="col-form-label">body</label>
-                                    <textarea class="form-control" id="body" name="body"></textarea>
+                                    <label for="createPostBody" class="col-form-label">body</label>
+                                    <textarea class="form-control" id="createPostBody" name="body"></textarea>
+                                    <div id="createPostBodyWarning"></div>
                                 </div>
-                                <input type="hidden" id="featuredImgURL" name="featuredImgURL" value="https://cdn.filestackcontent.com/rRr07m4MQlmTHBaEVnGA"/>
                                 <div class="dropdown">
                                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         Categories
                                     </button>
                                     <div class="dropdown-menu cat-dropdown" aria-labelledby="dropdownMenuButton" >
-                                        <div th:each="category : ${categories}">
+                                        <div id="categories" th:each="category : ${categories}">
                                             <div class="form-check form-check-inline form-group">
                                                 <input class="form-check-input" type="checkbox" id="category" name="checked" th:value="${category.title}" />
                                                 <label class="form-check-label" for="category" th:value="${category.title}" th:text="${category.title}" ></label>
                                             </div>
                                         </div>
                                     </div>
+                                    <div id="checkboxWarning"></div>
+                                    <input type="hidden" id="featuredImgURL" name="featuredImgURL" value="https://cdn.filestackcontent.com/rRr07m4MQlmTHBaEVnGA"/>
                                 </div>
 
                                 <!--<div class="row">-->
@@ -120,7 +123,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <input type="submit" class="btn btn-primary" value="Submit" />
+                                <input id="createPostSubmit" type="submit" class="btn btn-primary" value="Submit" />
                             </div>
                         </div>
                     </div>
@@ -145,12 +148,14 @@
                             </div>
                             <div class="modal-body">
                                 <div class="form-group">
-                                    <label for="editTitle" class="col-form-label">title</label>
-                                    <input type="text" class="form-control" id="editTitle" name="title" />
+                                    <label for="editPostTitle" class="col-form-label">title</label>
+                                    <input type="text" class="form-control" id="editPostTitle" name="title" />
+                                    <div id="editPostTitleWarning"></div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="editBody" class="col-form-label">body</label>
-                                    <textarea class="form-control" id="editBody" name="body"></textarea>
+                                    <label for="editPostBody" class="col-form-label">body</label>
+                                    <textarea class="form-control" id="editPostBody" name="body"></textarea>
+                                    <div id="editPostBodyWarning"></div>
                                 </div>
                                 <input type="hidden" class="form-control" id="editId" name="id" />
                                 <input type="hidden" name="featuredImgURL" id="editFeaturedImg"/>
@@ -164,7 +169,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <input type="submit" class="btn btn-primary" value="Submit" />
+                                <input id="editPostSubmit" type="submit" class="btn btn-primary" value="Submit" />
                             </div>
                         </div>
                     </div>
