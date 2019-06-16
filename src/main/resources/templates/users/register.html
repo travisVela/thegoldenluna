@@ -11,11 +11,15 @@
             <div class="col-md-8">
                 <form th:action="@{/register}" th:method="post" th:object="${user}">
                     <div class="form-group">
-                        <input type="text" class="form-control" th:field="*{username}" placeholder="username"/>
+                        <input type="text" id="username" class="form-control" th:field="*{username}" placeholder="username"/>
+                        <div id="username-warning"></div>
                     </div>
-                    <input type="email" class="form-control" th:field="*{email}" placeholder="email" />
-                    <input type="password" class="form-control" th:field="*{password}" placeholder="password" />
-                    <textarea class="form-control" th:field="*{bio}" placeholder="Enter a short bio" rows="5"></textarea>
+                    <input type="email" id="email" class="form-control" th:field="*{email}" placeholder="email" />
+                    <div id="email-warning"></div>
+                    <input type="password" id="password" class="form-control" th:field="*{password}" placeholder="password" />
+                    <div id="password-warning"></div>
+                    <textarea class="form-control" id="bio" th:field="*{bio}" placeholder="Enter a short bio" rows="5"></textarea>
+                    <div id="bio-warning"></div>
                     <div class="row">
                         <form id="pick-form">
                             <div class="field col-md-6 my-2">
@@ -32,7 +36,7 @@
                             </div>
                             <div class="field my-2 col-md-6">
                                 <div class="control">
-                                    <input class="button btn btn-primary my-2" type="submit" value="Submit"/>
+                                    <input id="register-submit" class="button btn btn-primary my-2" type="submit" value="Submit"/>
                                 </div>
                             </div>
                         </form>

@@ -29,8 +29,8 @@ $(document).ready(function(){
 
         $.get(href, function(post, categories, status) {
             $('#editId').val(post.id);
-            $('#editTitle').val(post.title);
-            $('#editBody').val(post.body);
+            $('#editPostTitle').val(post.title);
+            $('#editPostBody').val(post.body);
             $('#dateCreated').val(post.dateCreated);
             $('#timeCreated').val(post.timeCreated);
             $('#editFeaturedImg').val(post.featuredImgURL);
@@ -58,7 +58,7 @@ $(document).ready(function(){
         $.get(href, function(comment, status) {
 
             $('#editId').val(comment.id);
-            $('#editBody').val(comment.body);
+            $('#editCommentBody').val(comment.body);
             $('#dateCreated').val(comment.dateCreated);
             $('#timeCreated').val(comment.timeCreated);
 
@@ -71,7 +71,7 @@ $(document).ready(function(){
     $('.commentDelete').on('click', function(e) {
         e.preventDefault()
         let href = $(this).attr('href');
-        $('#commentDelRef').attr('href', href)
+        $('#commentDelRef').attr('href', href);
         $('#deleteCommentModal').modal();
     });
 
