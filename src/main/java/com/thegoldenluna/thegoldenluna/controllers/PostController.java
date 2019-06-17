@@ -6,6 +6,8 @@ import com.thegoldenluna.thegoldenluna.models.User;
 import com.thegoldenluna.thegoldenluna.repositories.CategoryRepo;
 import com.thegoldenluna.thegoldenluna.repositories.PostRepo;
 import com.thegoldenluna.thegoldenluna.repositories.UserRepo;
+import com.thegoldenluna.thegoldenluna.services.EmailService;
+import org.hibernate.validator.constraints.Email;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -24,18 +26,21 @@ public class PostController {
     private PostRepo postRepo;
     private UserRepo userRepo;
     private CategoryRepo categoryRepo;
+    private final EmailService emailService;
 
-    public PostController(PostRepo postRepo, UserRepo userRepo, CategoryRepo categoryRepo) {
+    public PostController(PostRepo postRepo, UserRepo userRepo, CategoryRepo categoryRepo, EmailService emailService) {
         this.postRepo = postRepo;
         this.userRepo = userRepo;
         this.categoryRepo = categoryRepo;
+        this.emailService = emailService;
     }
 
 
     @GetMapping("/create")
     public String create(Model model) {
-
+        Iterable<Category> postCats = categoryRepo.findAll();
         model.addAttribute("post", new Post());
+        model.addAttribute("postCategories", postCats);
         return "create";
     }
     @PostMapping("/create")
@@ -55,7 +60,8 @@ public class PostController {
             }
 
             post.setPost_categories(checkedCats);
-            postRepo.save(post);
+            Post savedPost = postRepo.save(post);
+            emailService.prepareAndSend(savedPost, "Post has been created", "The post has been created successfully and you can find it with the ID of: " + savedPost.getId());
             return "redirect:/profile";
     }
 

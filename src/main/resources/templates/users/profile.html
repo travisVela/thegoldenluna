@@ -82,6 +82,7 @@
                                     <textarea class="form-control" id="createPostBody" name="body"></textarea>
                                     <div id="createPostBodyWarning"></div>
                                 </div>
+                                <small>* choose at least 1 category!</small>
                                 <div class="dropdown">
                                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         Categories
@@ -206,7 +207,7 @@
 
     </div>
 
-
+    <script th:src="@{'/js/createPost.js'}"></script>
     <th:block th:replace="fragments/js :: js" />
 </body>
 </html>
