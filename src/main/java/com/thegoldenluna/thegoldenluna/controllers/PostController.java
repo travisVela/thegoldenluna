@@ -6,7 +6,7 @@ import com.thegoldenluna.thegoldenluna.models.User;
 import com.thegoldenluna.thegoldenluna.repositories.CategoryRepo;
 import com.thegoldenluna.thegoldenluna.repositories.PostRepo;
 import com.thegoldenluna.thegoldenluna.repositories.UserRepo;
-import com.thegoldenluna.thegoldenluna.services.EmailService;
+//import com.thegoldenluna.thegoldenluna.services.EmailService;
 import org.hibernate.validator.constraints.Email;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -26,13 +26,13 @@ public class PostController {
     private PostRepo postRepo;
     private UserRepo userRepo;
     private CategoryRepo categoryRepo;
-    private final EmailService emailService;
+//    private final EmailService emailService;
 
-    public PostController(PostRepo postRepo, UserRepo userRepo, CategoryRepo categoryRepo, EmailService emailService) {
+    public PostController(PostRepo postRepo, UserRepo userRepo, CategoryRepo categoryRepo) {
         this.postRepo = postRepo;
         this.userRepo = userRepo;
         this.categoryRepo = categoryRepo;
-        this.emailService = emailService;
+//        this.emailService = emailService;
     }
 
 
@@ -61,7 +61,7 @@ public class PostController {
 
             post.setPost_categories(checkedCats);
             Post savedPost = postRepo.save(post);
-            emailService.prepareAndSend(savedPost, "Post has been created", "The post has been created successfully and you can find it with the ID of: " + savedPost.getId());
+//            emailService.prepareAndSend(savedPost, "Post has been created", "The post has been created successfully and you can find it with the ID of: " + savedPost.getId());
             return "redirect:/profile";
     }
 
